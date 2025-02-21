@@ -2,5 +2,8 @@
 {
     public class Clientes
     {
+        public int clienteId { get; set; }
+        public string nombreCliente { get; set; }
+        public string direccion { get; set; }
     }
 }

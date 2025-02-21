@@ -2,5 +2,8 @@
 {
     public class Platos
     {
+        public int platoId { get; set; }
+        public string nombrePlato { get; set; } = string.Empty;
+        public decimal precio { get; set; }
     }
 }
