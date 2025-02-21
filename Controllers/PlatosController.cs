@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using L01_2022CI650_2022VS601.Models;
+using L01_2022CI650_2022VS601.Data;
 
 namespace L01_2022CI650_2022VS601.Controllers
 {
@@ -40,14 +41,14 @@ namespace L01_2022CI650_2022VS601.Controllers
         {
             _context.Platos.Add(plato);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetPlato), new { id = plato.PlatoId }, plato);
+            return CreatedAtAction(nameof(GetPlato), new { id = plato.platoId }, plato);
         }
 
         // Actualizar plato
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePlato(int id, Platos plato)
         {
-            if (id != plato.PlatoId)
+            if (id != plato.platoId)
                 return BadRequest();
 
             _context.Entry(plato).State = EntityState.Modified;
@@ -73,7 +74,7 @@ namespace L01_2022CI650_2022VS601.Controllers
         public async Task<IActionResult> FiltrarPlatos(string nombre)
         {
             var platos = await _context.Platos
-                .Where(p => p.NombrePlato.Contains(nombre))
+                .Where(p => p.nombrePlato.Contains(nombre))
                 .ToListAsync();
             return Ok(platos);
         }

@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using L01_2022CI650_2022VS601.Models;
+using L01_2022CI650_2022VS601.Data;
+
 
 namespace L01_2022CI650_2022VS601.Controllers
 {
@@ -40,14 +42,14 @@ namespace L01_2022CI650_2022VS601.Controllers
         {
             _context.Clientes.Add(cliente);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetCliente), new { id = cliente.ClienteId }, cliente);
+            return CreatedAtAction(nameof(GetCliente), new { id = cliente.clienteId }, cliente);
         }
 
         // Actualizar cliente
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCliente(int id, Clientes cliente)
         {
-            if (id != cliente.ClienteId)
+            if (id != cliente.clienteId)
                 return BadRequest();
 
             _context.Entry(cliente).State = EntityState.Modified;
@@ -73,7 +75,7 @@ namespace L01_2022CI650_2022VS601.Controllers
         public async Task<IActionResult> FiltrarClientes(string direccion)
         {
             var clientes = await _context.Clientes
-                .Where(c => c.Direccion.Contains(direccion))
+                .Where(c => c.direccion.Contains(direccion))
                 .ToListAsync();
             return Ok(clientes);
         }
