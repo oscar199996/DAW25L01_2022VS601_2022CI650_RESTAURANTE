@@ -2,5 +2,7 @@
 {
     public class Motoristas
     {
+        public int motoristaId { get; set; }
+        public string nombreMotorista { get; set; }
     }
 }
