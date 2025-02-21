@@ -1,7 +1,10 @@
-﻿namespace L01_2022CI650_2022VS601.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace L01_2022CI650_2022VS601.Models
 {
     public class Pedidos
     {
+        [Key]
         public int pedidoId { get; set; }
         public int motoristaId { get; set; }
         public int clienteId { get; set; }
